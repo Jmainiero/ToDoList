@@ -1,5 +1,7 @@
 body {
-    background: #874000;
+    /* background: #874000; */
+    background-image: linear-gradient(#992e24, #d04925);
+    background-attachment: fixed;
     color: #333;
     font-family: Lato, sans-serif;
   }
@@ -123,4 +125,51 @@ body {
   ul li.editMode label {
     display:none;
   }
+
   
+
+
+
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  width: 50%;
+  margin: 0;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tabcontent {
+  animation: fadeEffect 30s; /* Fading effect takes 1 second */
+}
+

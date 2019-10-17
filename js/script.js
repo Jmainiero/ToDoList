@@ -4,7 +4,6 @@ const buttonAdd = document.querySelector('button.addItem');
 const newTask = document.getElementById('new-task');
 const listUl = document.querySelector('ul');
 
-console.log('Javascript Loaded');
 
 buttonAdd.addEventListener('click', () => {
   let li = document.createElement('li');
@@ -70,36 +69,48 @@ compeletedList.addEventListener('click', () => {
   }
 });
 
-const storeData = () =>
-{
-    const incompleteTasks = document.getElementById("incomplete-tasks").children;
-    const completedTasks = document.getElementById("completed-tasks").children;
+const storeData = () => {
+  const incompleteTasks = document.getElementById("incomplete-tasks").children;
+  const completedTasks = document.getElementById("completed-tasks").children;
 
-        var listContents = [];
-        for(let i =0; i<incompleteTasks.length; i++){
-           listContents.push(incompleteTasks[i].innerHTML);
-        }
-    localStorage.setItem("incomplete", JSON.stringify(listContents));
+  var listContents = [];
+  for (let i = 0; i < incompleteTasks.length; i++) {
+    listContents.push(incompleteTasks[i].innerHTML);
+  }
+  localStorage.setItem("incomplete", JSON.stringify(listContents));
 
-    var listContents = [];
-    for(let i =0; i<completedTasks.length; i++){
-        listContents.push(completedTasks[i].innerHTML);
-     }
-    localStorage.setItem("completed", JSON.stringify(listContents));
-
-    console.log(localStorage.getItem("completed"));
-    console.log("Function called");
+  var listContents = [];
+  for (let i = 0; i < completedTasks.length; i++) {
+    listContents.push(completedTasks[i].innerHTML);
+  }
+  localStorage.setItem("completed", JSON.stringify(listContents));
 }
 
 window.onload = () => {
-    // compeletedList.innerHTML(localStorage.getItem("completed"));
+  var listIncompleteContents = JSON.parse(localStorage.getItem('incomplete'));
+  for (let i = 0; i < listIncompleteContents.length; i++) {
+    incomplete.innerHTML += "<li>" + listIncompleteContents[i] + "</li>";
+  }
+  var listCompletedTasks = JSON.parse(localStorage.getItem('completed'));
+  for (let i = 0; i < listCompletedTasks.length; i++) {
+    compeletedList.innerHTML += "<li>" + listCompletedTasks[i] + "</li>";
+  }
+}
 
-    var listIncompleteContents = JSON.parse(localStorage.getItem('incomplete'));
-        for(let i=0; i<listIncompleteContents.length; i++){
-            incomplete.innerHTML += "<li>" + listIncompleteContents[i] + "</li>";
-        }
-    var listCompletedTasks = JSON.parse(localStorage.getItem('completed'));
-        for(let i=0; i<listCompletedTasks.length; i++){
-            compeletedList.innerHTML += "<li>" + listCompletedTasks[i] + "</li>";
-        }
+
+function switchTbs(evt, status) {
+  var i, tabcontent, tablinks;
+
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  document.getElementById(status).style.display = "block";
+  evt.currentTarget.className += " active";
 }
